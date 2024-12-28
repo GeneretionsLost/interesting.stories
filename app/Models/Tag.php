@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    protected $fillable = ['hashtag'];
+
     public function stories()
     {
         return $this->belongsToMany(Story::class);

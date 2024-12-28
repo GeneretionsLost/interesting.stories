@@ -48,6 +48,27 @@ header h1 {
     background-color: #f0f0f0;
 }
 
+.exit-button {
+    position: absolute;
+    right: 20px;
+    background-color: #FFFFFF;
+    color: #00796b;
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 70px;
+    text-align: center;
+}
+
+.exit-button:hover {
+    background-color: #f0f0f0;
+}
+
+
+
 main {
     max-width: 800px;
     margin: 20px auto;
@@ -127,6 +148,12 @@ input[type="text"], textarea {
 
 }
 
+input[type="text"].search-input {
+    font-size: 20px;
+    margin: 30px auto;
+    width: 820px;
+}
+
 input[type="text"]:focus, textarea:focus {
     outline: none;
     border-color: #4CAF50;
@@ -151,3 +178,11 @@ button:hover {
     gap: 10px;
     flex-wrap: wrap;
 }
+
+a {
+    color: gray; /* Цвет текста */
+    font-family: "Segoe UI", sans-serif; /* Шрифт */
+    text-decoration: none; /* Убирает подчеркивание */
+}
+
+
