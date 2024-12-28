@@ -9,12 +9,33 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stories = Story::orderBy('created_at', 'desc')->paginate(10);
+        $query = ltrim($request->input('query'), '#');
+
+        if ($query) {
+            // Поиск по тегам, а также по заголовку и тексту истории
+            $stories = Story::where(function ($queryBuilder) use ($query) {
+                // Поиск по тегам
+                $queryBuilder->whereHas('tags', function ($tagQueryBuilder) use ($query) {
+                    $tagQueryBuilder->where('hashtag', $query);
+                })
+                    // Поиск по названию и тексту истории
+                    ->orWhere('title', 'like', '%' . $query . '%')
+                    ->orWhere('text', 'like', '%' . $query . '%');
+            })
+                ->orderBy('created_at', 'desc')
+                ->paginate(5);
+        } else {
+            // Если нет строки поиска, то просто отображаем все истории
+            $stories = Story::orderBy('created_at', 'desc')
+                ->paginate(5);
+        }
 
         return view('index', compact('stories'));
     }
+
+
 
     public function create()
     {

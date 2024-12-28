@@ -24,8 +24,8 @@
 <header>
     <a href="{{ route('index') }}">
         <img src="{{ asset('images/book.png') }}" alt="Icon" class="header-icon">
+        <h1>Интересные Истории</h1>
     </a>
-    <h1>Интересные Истории</h1>
     {{$button}}
 </header>
 

@@ -4,3 +4,4 @@ document.querySelectorAll('.story-content').forEach(function (storyContent) {
     const truncatedText = words.slice(0, 100).join(' ') + '...';
     storyContent.innerHTML = truncatedText + ' <a href="#" class="continue-link">далее</a>';
 });
+

@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
@@ -12,7 +11,7 @@ header {
     align-items: center;
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
+    padding: 25px 20px;
     position: relative;
 }
 
@@ -24,10 +23,13 @@ header h1 {
 .header-icon {
     position: absolute;
     left: 20px; /* Отступ от левого края */
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%); /* Смещаем на 50% от высоты элемента для точного выравнивания */
     height: 70px; /* Устанавливаем нужный размер */
     width: auto; /* Сохраняем пропорции картинки */
     filter: invert(100%); /* Инвертирует цвета, меняет черный на белый */
 }
+
 
 .add-button {
     position: absolute;
@@ -101,11 +103,14 @@ h2 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: darkslategray;
 }
 
 .story-content {
     margin-bottom: 10px;
     overflow-wrap: break-word;
+    font-size: 16px;
+
 }
 
 .story-tags {
@@ -120,6 +125,11 @@ h2 {
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 14px;
+}
+
+.tag:hover {
+    background-color: #00796b; /* Изменение фона */
+    color: #e0f7fa; /* Изменение цвета текста */
 }
 
 main {
@@ -185,4 +195,11 @@ a {
     text-decoration: none; /* Убирает подчеркивание */
 }
 
+* {
+    box-sizing: content-box !important;
+}
+
+::after, ::before {
+    box-sizing: content-box !important;
+}
 

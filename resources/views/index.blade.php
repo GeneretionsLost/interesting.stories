@@ -35,7 +35,7 @@
                 </div>
                 <div class="story-tags">
                     @foreach ($story->tags as $tag)
-                        <a href="{{ route('index', ['query' => $tag->hashtag]) }}" class="tag"># {{$tag->hashtag}}</a>
+                        <a href="{{ route('index', ['query' => '#' . $tag->hashtag]) }}" class="tag">#{{$tag->hashtag}}</a>
                     @endforeach
                 </div>
             </div>
