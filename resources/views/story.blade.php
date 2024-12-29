@@ -7,7 +7,6 @@
         <a href="{{ route('index') }}" class="add-button">Назад</a>
     </x-slot:button>
     <main>
-
             <div class="story">
                  <div class="story-title">{{$story->title}}</div>
                 <div class="story-content">
@@ -19,8 +18,6 @@
                     @endforeach
                 </div>
             </div>
-
-
     </main>
 </x-layout>
 

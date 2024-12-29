@@ -15,7 +15,8 @@ class MainController extends Controller
 
         if ($query) {
             // Поиск по тегам, а также по заголовку и тексту истории
-            $stories = Story::where(function ($queryBuilder) use ($query) {
+            $stories = Story::where('is_moderated', true)
+                ->where(function ($queryBuilder) use ($query) {
                 // Поиск по тегам
                 $queryBuilder->whereHas('tags', function ($tagQueryBuilder) use ($query) {
                     $tagQueryBuilder->where('hashtag', $query);
@@ -28,7 +29,8 @@ class MainController extends Controller
                 ->paginate(5);
         } else {
             // Если нет строки поиска, то просто отображаем все истории
-            $stories = Story::orderBy('created_at', 'desc')
+            $stories = Story::where('is_moderated', true)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5);
         }
 
@@ -72,7 +74,7 @@ class MainController extends Controller
             $story->tags()->attach($tagIds);
         }
 
-        return redirect()->route('index')->with('success', 'История отправлена на модерацию!');
+        return redirect()->route('index')->with('warning', 'История отправлена на модерацию!');
     }
 
     public function show(Story $story)
@@ -82,7 +84,29 @@ class MainController extends Controller
 
     public function admin()
     {
-        return view('admin');
+        $stories = Story::where('is_moderated', false)
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);;
+
+        return view('admin', compact('stories'));
+    }
+
+    public function update($id)
+    {
+        $story = Story::findOrFail($id);
+        $story->is_moderated = true;
+        $story->save();
+
+        return redirect()->back()->with('success', 'История №' . $id . ' была добавлена');
+    }
+
+    public function delete($id)
+    {
+        $story = Story::findOrFail($id);
+
+        $story->delete();
+
+        return redirect()->back()->with('danger', 'История №' . $id . ' была удалена');
     }
 
 }

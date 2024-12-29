@@ -13,7 +13,9 @@ use App\Http\Controllers\MainController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/admin', [MainController::class,'admin'])->name('admin');
+Route::post('/update/{story}', [MainController::class,'update'])->name('update');
+Route::delete('/delete/{story}', [MainController::class,'delete'])->name('delete');
 
 Route::get('/', [MainController::class,'index'])->name('index');
 Route::get('/create', [MainController::class,'create'])->name('create');
@@ -25,7 +27,7 @@ Route::get('/show/{story}', [MainController::class,'show'])->name('show');
 
 
 
-Route::get('/admin', [MainController::class,'admin'])->name('admin');
+
 
 
 
