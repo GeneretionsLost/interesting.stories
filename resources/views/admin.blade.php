@@ -7,7 +7,6 @@
         <a href="" class="exit-button">Выход</a>
     </x-slot:button>
     <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
-    <body>
     <main>
         <h2>Объявления на модерацию</h2>
 
@@ -38,7 +37,5 @@
         @endforeach
         {{$stories->links()}}
 
-</main>
-</body>
-</html>
+    </main>
 </x-layout>

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ContentController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 /*
@@ -13,7 +14,15 @@ use App\Http\Controllers\MainController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/admin', [MainController::class,'admin'])->name('admin');
+Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('auth');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// Защищенный маршрут для админки, доступный только авторизованным пользователям
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+});
+
+
 Route::post('/update/{story}', [MainController::class,'update'])->name('update');
 Route::delete('/delete/{story}', [MainController::class,'delete'])->name('delete');
 

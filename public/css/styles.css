@@ -153,7 +153,6 @@ input[type="text"], textarea {
     border-radius: 4px;
     margin: auto;
     resize: none; /* Запрещает растягивание */
-
 }
 
 input[type="text"].search-input {

@@ -82,15 +82,6 @@ class MainController extends Controller
         return view('story', compact('story'));
     }
 
-    public function admin()
-    {
-        $stories = Story::where('is_moderated', false)
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);;
-
-        return view('admin', compact('stories'));
-    }
-
     public function update($id)
     {
         $story = Story::findOrFail($id);
@@ -108,5 +99,4 @@ class MainController extends Controller
 
         return redirect()->back()->with('danger', 'История №' . $id . ' была удалена');
     }
-
 }
