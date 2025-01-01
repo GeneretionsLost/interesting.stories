@@ -20,11 +20,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // Защищенный маршрут для админки, доступный только авторизованным пользователям
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 });
 
 
-Route::post('/update/{story}', [MainController::class,'update'])->name('update');
-Route::delete('/delete/{story}', [MainController::class,'delete'])->name('delete');
+Route::post('/update/{id}', [MainController::class,'update'])->name('update');
+Route::delete('/delete/{id}', [MainController::class,'delete'])->name('delete');
 
 Route::get('/', [MainController::class,'index'])->name('index');
 Route::get('/create', [MainController::class,'create'])->name('create');

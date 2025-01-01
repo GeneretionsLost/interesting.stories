@@ -28,4 +28,15 @@ class AuthController extends Controller
             'email' => 'Неверные данные для входа.',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Завершаем сессию пользователя
+
+        // Очистка сессии (опционально)
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('index'));
+    }
 }

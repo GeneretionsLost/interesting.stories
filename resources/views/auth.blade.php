@@ -56,7 +56,7 @@
         <h2>Авторизация</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <input type="text" name="login" value="{{ old('login') }}" placeholder="Имя пользователя" required autofocus>
+            <input type="text" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
             <input type="password" name="password" placeholder="Пароль" required>
             <button type="submit" class="submit-button">Войти</button>
         </form>

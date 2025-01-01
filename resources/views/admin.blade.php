@@ -4,8 +4,12 @@
     </x-slot:title>
 
     <x-slot:button>
-        <a href="" class="exit-button">Выход</a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="exit-button">Выйти</button>
+        </form>
     </x-slot:button>
+
     <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
     <main>
         <h2>Объявления на модерацию</h2>
