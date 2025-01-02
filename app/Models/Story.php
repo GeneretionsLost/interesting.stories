@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Story extends Model
 {
+    use HasFactory;  // Это обязательно для работы фабрики
+
     protected $fillable = ['title', 'text'];
 
     public function tags()

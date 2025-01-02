@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    use HasFactory;  // Это обязательно для работы фабрики
+
     protected $fillable = ['hashtag'];
 
     public function stories()

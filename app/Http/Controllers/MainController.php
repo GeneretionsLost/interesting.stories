@@ -31,7 +31,7 @@ class MainController extends Controller
             // Если нет строки поиска, то просто отображаем все истории
             $stories = Story::where('is_moderated', true)
                 ->orderBy('created_at', 'desc')
-                ->paginate(5);
+                ->paginate(10);
         }
 
         return view('index', compact('stories'));

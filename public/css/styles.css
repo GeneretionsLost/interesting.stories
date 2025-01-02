@@ -36,7 +36,6 @@ h2 {
 }
 
 
-
 .add-button {
     position: absolute;
     right: 20px;
@@ -72,7 +71,6 @@ h2 {
 }
 
 
-
 .exit-button:hover {
     background-color: #f0f0f0;
 }
@@ -85,7 +83,6 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
 
 
 .story {
@@ -225,4 +222,3 @@ a {
     padding-right: 50px;
 
 }
-

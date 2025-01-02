@@ -16,17 +16,18 @@ class AuthController extends Controller
     // Обработка данных авторизации
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'name' => ['required'],
+            'password' => ['required'],
+        ]);
 
         if (Auth::attempt($credentials)) {
-            // Авторизация успешна
+            $request->session()->regenerate();
+
             return redirect()->route('admin');
         }
 
-        // Ошибка авторизации
-        return redirect()->route('auth')->withErrors([
-            'email' => 'Неверные данные для входа.',
-        ]);
+        return redirect()->back();
     }
 
     public function logout(Request $request)

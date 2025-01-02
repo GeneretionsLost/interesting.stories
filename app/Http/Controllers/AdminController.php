@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         $stories = Story::where('is_moderated', false)
             ->orderBy('created_at', 'desc')
-            ->paginate(5);;
+            ->paginate(10);;
 
         return view('admin', compact('stories'));
     }

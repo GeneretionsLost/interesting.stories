@@ -10,7 +10,7 @@
 <body>
 
 <header>
-    <a href="{{ route('auth') }}">
+    <a href="{{ route('admin') }}">
         <img src="{{ asset('images/book.png') }}" alt="Icon" class="header-icon">
     </a>
     <a href="{{ route('index') }}">
