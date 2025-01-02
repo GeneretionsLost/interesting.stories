@@ -25,6 +25,7 @@ class StoryFactory extends Factory
             'title' => $this->faker->sentence,
             'text' => $this->faker->paragraph,
             'is_moderated' => $this->faker->boolean, // Возвращает 0 или 1
+            'created_at' => $this->faker->dateTime()->format('Y-m-d H:i:s') // дата и время
         ];
     }
 }

@@ -1,13 +1,13 @@
-<x-layout>
-    <x-slot:title>
-        Новая история
-    </x-slot:title>
+@extends('layouts.master')
 
-    <x-slot:button>
-        <a href="{{ route('index') }}" class="add-button">Назад</a>
-    </x-slot:button>
+@section('title','Новая история')
+
+@section('button')
+    <a href="{{ route('index') }}" class="add-button">Назад</a>
+@endsection
+
+@section('content')
     <main>
-
         <section id="add-story">
             <h2>Добавить Историю</h2>
             <form method="POST" action="{{ route('store') }}">
@@ -18,8 +18,6 @@
                 <button type="submit" class="submit-button">Добавить</button>
             </form>
         </section>
-
-
     </main>
-</x-layout>
+@endsection
 

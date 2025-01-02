@@ -1,17 +1,18 @@
-<x-layout>
-    <x-slot:title>
-        Главная страница
-    </x-slot:title>
+@extends('layouts.master')
 
-    <x-slot:button>
-        <a href="{{ route('create') }}" class="add-button">Добавить</a>
-    </x-slot:button>
+@section('title', 'Главная страница')
 
+@section('button')
+    <a href="{{ route('create') }}" class="add-button">Добавить</a>
+@endsection
+
+@section('content')
     <div class="search-container">
         <form action="" method="GET">
             <input type="text" name="query" class="search-input" placeholder="Поиск..." value="{{ request('query') }}">
         </form>
     </div>
+
 
     <main>
         <h2>Новые сюжеты</h2>
@@ -29,12 +30,12 @@
                 </div>
             </div>
         @endforeach
-{{$stories->links()}}
+        {{$stories->links()}}
     </main>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+@endsection
 
-</x-layout>
 
 
 

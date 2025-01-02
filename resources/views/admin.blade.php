@@ -1,32 +1,25 @@
-<x-layout>
-    <x-slot:title>
-        Админ-панель
-    </x-slot:title>
+@extends('layouts.master')
 
-    <x-slot:button>
-        <form method="POST" action="{{ route('logout') }}" class="exit-button-form">
-            @csrf
-            <button type="submit" class="exit-button">Выйти</button>
-        </form>
-    </x-slot:button>
+@section('title', 'Админ-панель')
 
+@section('styles')
     <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
-    <style>
-        .exit-button-form {
-            position: absolute;
-            right: 20px;
-        }
+@endsection
 
-        .exit-button {
-            position: static;
-        }
-    </style>
+@section('button')
+    <form method="POST" action="{{ route('logout') }}" class="exit-button-form">
+        @csrf
+        <button type="submit" class="exit-button">Выйти</button>
+    </form>
+@endsection
+
+@section('content')
     <main>
         <h2>Объявления на модерацию</h2>
 
         @foreach($stories as $story)
             <div class="awaiting-story">
-                <div class="story-title">{{$story->title}}</div>
+                <a href="{{ route('show', $story->id) }}" class="story-title">{{$story->title}}</a>
                 <div class="story-content">{{$story->text}}</div>
                 <div class="story-tags">
                     @foreach ($story->tags as $tag)
@@ -34,7 +27,7 @@
                     @endforeach
                 </div>
                 <div class="awaiting-story-footer">
-                    <span class="story-date">Добавлено: 2024-12-17</span>
+                    <span class="story-date">Добавлено: {{ $story->created_at->format('d.m.Y') }}</span>
                     <div>
                         <form action="{{ route('update', $story->id) }}" method="POST" style="display: inline;">
                             @csrf
@@ -52,4 +45,4 @@
         {{$stories->links()}}
 
     </main>
-</x-layout>
+@endsection
