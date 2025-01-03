@@ -2,6 +2,20 @@
 
 @section('title','Новая история')
 
+@section('styles')
+    @auth()
+        <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
+        <style>
+            main {
+                max-width: 800px;
+            }
+            .submit-button {
+                background-color: #00796b;
+            }
+        </style>
+    @endauth
+@endsection
+
 @section('button')
     <a href="{{ route('index') }}" class="add-button">Назад</a>
 @endsection

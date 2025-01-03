@@ -11,7 +11,7 @@
 <body>
 
 <header>
-    <a href="{{ route('admin') }}">
+    <a href="{{ auth()->check() ? route('admin') : route('index') }}">
         <img src="{{ asset('images/book.png') }}" alt="Icon" class="header-icon">
     </a>
     <a href="{{ route('index') }}">
@@ -46,7 +46,8 @@
 
 @yield('content')
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@yield('scripts')
+
 
 </body>
 </html>

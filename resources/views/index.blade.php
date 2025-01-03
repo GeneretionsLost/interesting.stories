@@ -2,6 +2,17 @@
 
 @section('title', 'Главная страница')
 
+@section('styles')
+    @auth()
+        <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
+        <style>
+            main {
+                max-width: 800px;
+            }
+        </style>
+    @endauth
+@endsection
+
 @section('button')
     <a href="{{ route('create') }}" class="add-button">Добавить</a>
 @endsection
@@ -33,6 +44,10 @@
         {{$stories->links()}}
     </main>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 @endsection
 
