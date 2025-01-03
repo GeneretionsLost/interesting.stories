@@ -11,24 +11,28 @@ class MainController extends Controller
 {
     public function index(Request $request)
     {
-        $query = ltrim($request->input('query'), '#');
+        $query = $request->input('query');
+        $trimmedQuery = ltrim($query, '#');
 
         if ($query) {
-            // Поиск по тегам, а также по заголовку и тексту истории
             $stories = Story::where('is_moderated', true)
-                ->where(function ($queryBuilder) use ($query) {
-                // Поиск по тегам
-                $queryBuilder->whereHas('tags', function ($tagQueryBuilder) use ($query) {
-                    $tagQueryBuilder->where('hashtag', $query);
+                ->where(function ($queryBuilder) use ($query, $trimmedQuery) {
+                    if (str_starts_with($query, '#')) {
+                        // Искать только по тегам
+                        $queryBuilder->whereHas('tags', function ($tagQueryBuilder) use ($trimmedQuery) {
+                            $tagQueryBuilder->where('hashtag', $trimmedQuery);
+                        });
+                    } else {
+                        // Искать по заголовку или тексту
+                        $queryBuilder->where('title', 'like', '%' . $trimmedQuery . '%')
+                            ->orWhere('text', 'like', '%' . $trimmedQuery . '%');
+                    }
                 })
-                    // Поиск по названию и тексту истории
-                    ->orWhere('title', 'like', '%' . $query . '%')
-                    ->orWhere('text', 'like', '%' . $query . '%');
-            })
                 ->orderBy('created_at', 'desc')
-                ->paginate(5);
+                ->paginate(10)
+                ->appends(['query' => $query]);
+
         } else {
-            // Если нет строки поиска, то просто отображаем все истории
             $stories = Story::where('is_moderated', true)
                 ->orderBy('updated_at', 'desc')
                 ->paginate(10);
@@ -36,7 +40,6 @@ class MainController extends Controller
 
         return view('index', compact('stories'));
     }
-
 
 
     public function create()
