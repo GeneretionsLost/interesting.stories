@@ -64,7 +64,6 @@ main {
     border-radius: 8px;
 }
 
-
 .story {
     padding: 15px;
     border: 1px solid #ddd;
@@ -107,22 +106,13 @@ main {
     color: #e0f7fa; /* Изменение цвета текста */
 }
 
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea, input[type="password"] {
     width: 765px;
     padding: 10px;
     font-size: 16px;

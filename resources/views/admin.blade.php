@@ -4,6 +4,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
+    <style>
+        main {
+            max-width: 1000px;
+        }
+    </style>
 @endsection
 
 @section('button')

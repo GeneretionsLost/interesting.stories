@@ -2,6 +2,12 @@
 
 @section('title', $story->title)
 
+@section('styles')
+    @auth()
+        <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
+    @endauth
+@endsection
+
 @section('button')
     <a href="{{ route('index') }}" class="add-button">Назад</a>
 @endsection

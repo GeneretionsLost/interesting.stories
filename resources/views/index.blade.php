@@ -5,11 +5,6 @@
 @section('styles')
     @auth()
         <link rel="stylesheet" href="{{ asset('css/adminStyles.css') }}">
-        <style>
-            main {
-                max-width: 800px;
-            }
-        </style>
     @endauth
 @endsection
 
