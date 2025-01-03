@@ -94,15 +94,16 @@ class MainController extends Controller
         $story->is_moderated = true;
         $story->save();
 
-        return redirect()->back()->with('success', 'История №' . $id . ' была добавлена');
+        return redirect()->route('admin')->with('success', 'История №' . $id . ' была добавлена');
     }
 
     public function delete($id)
     {
+
         $story = Story::findOrFail($id);
 
         $story->delete();
 
-        return redirect()->back()->with('danger', 'История №' . $id . ' была удалена');
+        return redirect()->route($story->is_moderated ? 'index' : 'admin')->with('danger', 'История №' . $id . ' была удалена');
     }
 }
