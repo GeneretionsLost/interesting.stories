@@ -9,7 +9,7 @@ class Story extends Model
 {
     use HasFactory;  // Это обязательно для работы фабрики
 
-    protected $fillable = ['title', 'text'];
+    protected $fillable = ['title', 'text', 'is_moderated'];
 
     public function tags()
     {

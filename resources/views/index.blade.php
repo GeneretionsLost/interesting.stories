@@ -34,6 +34,19 @@
                         <a href="{{ route('index', ['query' => '#' . $tag->hashtag]) }}" class="tag">#{{$tag->hashtag}}</a>
                     @endforeach
                 </div>
+                @auth()
+                    <div class="awaiting-story-footer">
+                        <span class="story-date">Добавлено: {{ $story->created_at->format('d.m.Y') }}</span>
+                        <div>
+                            <form action="{{ route('delete', $story->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="reject">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                @endauth
+
             </div>
         @endforeach
         {{$stories->links()}}

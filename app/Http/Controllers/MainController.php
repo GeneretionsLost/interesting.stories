@@ -57,6 +57,7 @@ class MainController extends Controller
         $story = Story::create([
             'title' => $validated['title'],
             'text' => $validated['content'],
+            'is_moderated' => auth()->check() ? true : false, // Устанавливаем is_moderated для авторизованных пользователей
         ]);
 
         // Обработка тегов
@@ -72,6 +73,11 @@ class MainController extends Controller
 
             // Привязываем теги к истории
             $story->tags()->attach($tagIds);
+        }
+
+        // Возвращение без флеша для авторизованных пользователей
+        if (auth()->check()) {
+            return redirect()->route('index')->with('success', 'История №' . $story->id . ' была добавлена');
         }
 
         return redirect()->route('index')->with('warning', 'История отправлена на модерацию!');
